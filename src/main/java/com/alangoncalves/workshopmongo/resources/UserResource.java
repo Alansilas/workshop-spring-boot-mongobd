@@ -1,8 +1,6 @@
 package com.alangoncalves.workshopmongo.resources;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,5 +45,12 @@ public class UserResource {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@PathVariable String id) {
+		service.delete(id);
+
+		return ResponseEntity.noContent().build();
 	}
 }
