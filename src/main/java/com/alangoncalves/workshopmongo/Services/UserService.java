@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.alangoncalves.workshopmongo.Services.exception.ObjectNotFoundException;
 import com.alangoncalves.workshopmongo.domain.User;
+import com.alangoncalves.workshopmongo.dto.UserDTO;
 import com.alangoncalves.workshopmongo.repository.UserRepository;
 
 @Service
@@ -25,4 +26,12 @@ public class UserService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	}
 
+	public User insert(User obj) {
+		return repo.insert(obj);
+	}
+	
+	public User fromDTO(UserDTO objDTO) {
+		return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
+		
+	}
 }
